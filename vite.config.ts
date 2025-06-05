@@ -8,13 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://192.168.1.125:4041/dict/auth/',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   },
   plugins: [
     react(),

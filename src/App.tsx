@@ -12,7 +12,7 @@ import WalkIn from "./pages/Walkin";
 const queryClient = new QueryClient();
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.18.42:4041/dict/auth";
+//axios.defaults.baseURL = "http://192.168.18.42:4041/dict/auth";
 
 const App = () => 
   (

@@ -6,20 +6,53 @@ export const InternLogEntriesList = () => {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchLogs = async () => {
-      try {
-        const response = await axios.get('/user/intern/log-list');
-        console.log("Recent Log: ", response.data)
-        setEntries(response.data);
-      } catch (error) {
-        console.error("Failed to fetch intern logs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Commented out API call and useEffect for static data
+  /*
+    useEffect(() => {
+      const fetchLogs = async () => {
+        try {
+          const response = await axios.get('/user/intern/log-list');
+          console.log("Recent Log: ", response.data)
+          setEntries(response.data);
+        } catch (error) {
+          console.error("Failed to fetch intern logs:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchLogs();
+    }, []);
+  */
 
-    fetchLogs();
+  // Static log entries for demonstration
+  useEffect(() => {
+    setEntries([
+      {
+        _id: "log1",
+        user_id: { name: "Juan Dela Cruz" },
+        time_in: new Date(2025, 5, 5, 8, 0).toISOString(),
+        time_out: new Date(2025, 5, 5, 12, 0).toISOString(),
+        total_time: "4h 0m",
+        updatedAt: new Date(2025, 5, 5, 12, 0).toISOString(),
+      },
+      {
+        _id: "log2",
+        user_id: { name: "Maria Santos" },
+        time_in: new Date(2025, 5, 5, 9, 0).toISOString(),
+        time_out: null,
+        total_time: null,
+        updatedAt: new Date(2025, 5, 5, 9, 0).toISOString(),
+      },
+      {
+        _id: "log3",
+        user_id: { name: "Pedro Reyes" },
+        time_in: new Date(2025, 5, 5, 10, 0).toISOString(),
+        time_out: new Date(2025, 5, 5, 15, 0).toISOString(),
+        total_time: "5h 0m",
+        updatedAt: new Date(2025, 5, 5, 15, 0).toISOString(),
+      },
+    ]);
+    setLoading(false);
   }, []);
 
   const maskName = (name) => {

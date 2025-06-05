@@ -21,6 +21,7 @@ export const InternLogEntryForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  /*
   useEffect(() => {
     const fetchInterns = async () => {
       try {
@@ -49,10 +50,20 @@ export const InternLogEntryForm = () => {
 
     checkInternStatus();
   }, [selectedInternID]);
+  */
+
+  // Static intern data for demonstration
+  useEffect(() => {
+    setInterns([
+      { _id: "1", name: "Juan Dela Cruz", role: "Intern" },
+      { _id: "2", name: "Maria Santos", role: "Intern" },
+      { _id: "3", name: "Pedro Reyes", role: "Intern" },
+    ]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+  /*
     // Validate required fields
     if (!selectedInternID || !internPassword) {
       toast({
@@ -62,52 +73,32 @@ export const InternLogEntryForm = () => {
       });
       return;
     }
-  
-    try {
-      // Verify password first
-      const passwordCheckResponse = await axios.post('/user/intern/check-password', {
-        selectedInternID,
-        internPassword,
-      });
-      
-      if (passwordCheckResponse.status === 401) {
-        toast({
-          title: "Error",
-          description: "Invalid password. Please try again.",
-          variant: "destructive",
-        });
-        return;
-      }
-  
-      // Handle check-in or check-out
-      if (isCheckedIn) {
-        await axios.post('/user/intern/time-out', { user_id: selectedInternID });
-        toast({
-          title: "Success",
-          description: "Checked out successfully",
-        });
-      } else {
-        await axios.post('/user/intern/time-in', { user_id: selectedInternID });
-        toast({
-          title: "Success",
-          description: "Checked in successfully",
-        });
-      }
-  
-      // Update state and refresh the page
-      setIsCheckedIn(!isCheckedIn);
-      window.location.reload();
-    } catch (error) {
-      console.error("Failed to update intern status:", error);
+  */
+    // Static validation for demonstration
+    if (!selectedInternID || !internPassword) {
       toast({
         title: "Error",
-        description: "Failed to update check-in status",
+        description: "Please fill in all required fields",
         variant: "destructive",
       });
-    } finally {
-      // Clear the password field
-      setInternPassword("");
+      return;
     }
+
+    // Static login info: user id 1, password 'password123'
+    if (selectedInternID === "1" && internPassword === "password123") {
+      toast({
+        title: "Success",
+        description: isCheckedIn ? "Checked out successfully" : "Checked in successfully",
+      });
+      setIsCheckedIn(!isCheckedIn);
+    } else {
+      toast({
+        title: "Error",
+        description: "Invalid credentials. Please try again.",
+        variant: "destructive",
+      });
+    }
+    setInternPassword("");
   };
   
 
