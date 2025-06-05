@@ -44,7 +44,7 @@ const InternLog = () => {
       <div className="flex flex-col md:flex-row items-center justify-between w-full text-center md:text-left space-y-4 md:space-y-0">
         <a href="https://www.dict.gov.ph/home" target="_blank" rel="noopener noreferrer">
           <img
-            src="/src/assets/DICT COMMERCIAL LOGO 1.png"
+            src="/assets/DICT COMMERCIAL LOGO 1.png"
             alt="DICT Logo"
             className="w-48 sm:w-64 h-auto"
           />
